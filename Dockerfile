@@ -8,7 +8,7 @@ mysql-client \
 mysql-server \
 wget
 RUN wget http:// wordpress.org/latest.tar.gz && \
-tar -xvf latest.tar && \
+tar -xvf latest.tar.gz && \
 cp -R ./wordpress/* /var/www/html && \
 rm /var/www/html/html.index
 RUN chown -R www-data:www-data /var/www/html
