@@ -10,7 +10,7 @@ wget
 RUN wget http://wordpress.org/latest.tar.gz && \
 tar -xvf latest.tar.gz && \
 cp -R ./wordpress/* /var/www/html && \
-rm /var/www/html/html.index
+rm /var/www/html/index.html
 RUN chown -R www-data:www-data /var/www/html
 EXPOSE 80
 ENTRYPOINT /bin/bash
