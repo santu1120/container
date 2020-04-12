@@ -11,7 +11,7 @@ spec:
       app: apache2
     tamplate:
       metadata:
-	labels:
+        labels:
 	  app: apache2
       spec:
 	containers:
