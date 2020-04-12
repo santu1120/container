@@ -10,7 +10,6 @@ wget
 RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 ADD server-status.conf /etc/apache2/sites-available/
 RUN a2ensite server-status.conf
-RUN echo "Successful Web Server Test" > /var/www/html/index.html
 RUN service apache2 start && \
 service mysql start
 EXPOSE 80
