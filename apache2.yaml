@@ -17,13 +17,6 @@ spec:
       containers:
       - name: apache2
         image: santu1120/container:v1
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 250m
-            memory: 256Mi
         ports:
         - containerPort: 80
           name: apache2
