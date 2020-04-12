@@ -16,7 +16,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: apache2
-        image: santu1234.azurecr.io/container:v
+        image: santu1234.azurecr.io/container:v1
         command: ["sh","-c","service apache2 start"]
         ports:
         - containerPort: 80
