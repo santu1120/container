@@ -9,6 +9,7 @@ mysql-server \
 wget
 RUN service apache2 start && \
 service mysql start
+RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 EXPOSE 80
 ENTRYPOINT /bin/bash
 VOLUME /var/lib/mysql
