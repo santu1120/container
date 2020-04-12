@@ -12,11 +12,11 @@ spec:
       labels:
         app: apache2-deployment
     spec:
-      nodeSelector:
+	  nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
       - name: apache2-deployment
-        image: hello-world:latest
+        image: santu1120/container:v1
         ports:
         - containerPort: 80
           name: apache2
