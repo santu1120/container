@@ -14,7 +14,7 @@ spec:
         labels:
           app: apache2
       spec:
-	containers:
+        containers:
 	- name: apache2
 	  image: santu1120/container:v1
 	  ports:
