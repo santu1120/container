@@ -12,8 +12,6 @@ spec:
       labels:
         app: apache2-deployment
     spec:
-      nodeSelector:
-        "beta.kubernetes.io/os": linux
       containers:
       - name: apache2
         image: santu1120/container:v1
