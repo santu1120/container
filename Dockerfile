@@ -12,6 +12,7 @@ tar -xvf latest.tar.gz && \
 cp -R ./wordpress/* /var/www/html && \
 rm /var/www/html/index.html
 RUN chown -R www-data:www-data /var/www/html
+RUN service apache2 start
 EXPOSE 80
 ENTRYPOINT /bin/bash
 VOLUME /var/lib/mysql
