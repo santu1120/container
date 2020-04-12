@@ -19,7 +19,7 @@ spec:
         image: santu1234.azurecr.io/container:v1
         ports:
         - containerPort: 80
-          name: apache2
+          name: apache2-deployment
 ---
 apiVersion: v1
 kind: Service
