@@ -17,6 +17,7 @@ spec:
       containers:
       - name: apache2
         image: santu1234.azurecr.io/container:v1
+        command: ["sh","-c","tail -f /dev/null"]
         ports:
         - containerPort: 80
           name: apache2
