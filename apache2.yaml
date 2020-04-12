@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: apache2-deployment
+  labels:  
+    app: apache2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+	  app: apache2
+    tamplate:
+	  metadata:
+	    labels:
+		  app: apache2
+	  spec:
+	    containers:
+		- name: apache2
+		  image: santu1120/container:v1
+		  ports:
+		  - containerPort: 80
+  
