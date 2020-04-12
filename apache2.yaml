@@ -13,7 +13,7 @@ spec:
         app: apache2-deployment
     spec:
       containers:
-      - name: apache2
+      - name: apache2-deployment
         image: santu1120/container:v1
         ports:
         - containerPort: 80
