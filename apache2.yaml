@@ -1,31 +1,82 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apache2-deployment
+  name: azure-vote-back
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: apache2-deployment
+      app: azure-vote-back
   template:
     metadata:
       labels:
-        app: apache2-deployment
+        app: azure-vote-back
     spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
       containers:
-      - name: apache2-deployment
-        image: hello-world:latest
+      - name: azure-vote-back
+        image: redis
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
         ports:
-        - containerPort: 80
-          name: apache2
+        - containerPort: 6379
+          name: redis
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: apache2-deployment
+  name: azure-vote-back
+spec:
+  ports:
+  - port: 6379
+  selector:
+    app: azure-vote-back
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-vote-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azure-vote-front
+  template:
+    metadata:
+      labels:
+        app: azure-vote-front
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: azure-vote-front
+        image: microsoft/azure-vote-front:v1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+        env:
+        - name: REDIS
+          value: "azure-vote-back"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: azure-vote-front
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: apache2-deployment
+    app: azure-vote-front
