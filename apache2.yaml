@@ -12,7 +12,7 @@ spec:
       labels:
         app: apache2-deployment
     spec:
-	  nodeSelector:
+      nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
       - name: apache2-deployment
