@@ -12,7 +12,7 @@ spec:
     tamplate:
       metadata:
         labels:
-	   app: apache2
+          app: apache2
       spec:
 	containers:
 	- name: apache2
