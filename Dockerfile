@@ -2,8 +2,6 @@ FROM ubuntu:18.04
 MAINTAINER Username "santu"
 RUN apt-get update && \
 apt-get -y install apache2 \
-php5 \
-php5-mysql \
 mysql-client \
 mysql-server 
 # Install apache and write hello world message
