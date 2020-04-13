@@ -1,4 +1,4 @@
-FROM richxsl/rhel7
+FROM centos
 MAINTAINER Username "santu"
 RUN yum update && \
 yum -y install apache2 \
