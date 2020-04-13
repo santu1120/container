@@ -1,7 +1,7 @@
-FROM ubuntu:14.04
+FROM richxsl/rhel7
 MAINTAINER Username "santu"
-RUN apt-get update && \
-apt-get -y install apache2 \
+RUN yum update && \
+yum -y install apache2 \
 php5 \
 php5-mysql \
 mysql-client \
