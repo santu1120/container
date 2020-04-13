@@ -1,6 +1,6 @@
 FROM centos
 MAINTAINER Username "santu"
-RUN yum update 
+RUN yum update -y
 RUN yum install apache2 -y 
 RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 ADD server-status.conf /etc/apache2/sites-available/
