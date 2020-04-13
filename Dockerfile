@@ -1,19 +1,9 @@
 FROM centos
 MAINTAINER Username "santu"
 RUN yum update -y
-RUN yum install apache2 -y 
-RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
-ADD server-status.conf /etc/apache2/sites-available/
-RUN a2ensite server-status.conf
-RUN service apache2 start 
-RUN echo 'Hello World!' > /var/www/html/index.html
-# Configure apache
-RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
- echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
- echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \ 
- echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \ 
- chmod 755 /root/run_apache.sh
-RUN chmod 755 /root/run_apache.sh 
-CMD /root/run_apache.sh
+RUN  yum install httpd
+RUN systemctl start httpd
+RUN systemctl enable httpd
+RUN echo 'Hello World! Santu 0000000000000000' > /var/www/html/index.html
 EXPOSE 80
 ENTRYPOINT /bin/bash
