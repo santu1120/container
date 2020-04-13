@@ -1,12 +1,9 @@
 FROM centos
 MAINTAINER Username "santu"
 RUN yum update && \
-yum -y install apache2 \
-php5 \
-php5-mysql \
-mysql-client \
-mysql-server \
-wget
+yum install apache2 -y && \
+yum install mysql-client -y &&\
+yum install mysql-server -y 
 RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 ADD server-status.conf /etc/apache2/sites-available/
 RUN a2ensite server-status.conf
