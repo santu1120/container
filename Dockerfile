@@ -5,12 +5,14 @@ apt-get -y install apache2 \
 php5 \
 php5-mysql \
 mysql-client \
-mysql-server \
-RUN wget http://wordpress.org/latest.tar.gz &&\
-tar -xvf latest.tar.gz && \
-cp -R ./wordpress/* /var/www/html && \
-rm /var/www/html/html.index
-RUN chown -R www-data:www-data /var/www/html
+mysql-server 
+# Install apache and write hello world message
+RUN echo 'Hello World!' > /var/www/html/index.htm
+# Configure apache
+RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
+ echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
+ echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \ 
+ echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \ 
+ chmod 755 /root/run_apache.sh
 EXPOSE 80
-ENTRYPOINT /bin/bash
-VOLUME /var/lib/mysql
+CMD /root/run_apache.sh
