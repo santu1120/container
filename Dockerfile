@@ -1,4 +1,4 @@
-FROM ubentu:18.04
+FROM ubuntu:18.04
 MAINTAINER Username "santu"
 RUN apt-get update && \
 apt-get -y install apache2 \
