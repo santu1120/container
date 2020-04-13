@@ -12,6 +12,8 @@ ADD server-status.conf /etc/apache2/sites-available/
 RUN a2ensite server-status.conf
 RUN service apache2 start && \
 service mysql start
+RUN chmod 755 /root/run_apache.sh 
+CMD /root/run_apache.sh
 EXPOSE 80
 ENTRYPOINT /bin/bash
 VOLUME /var/lib/mysql
