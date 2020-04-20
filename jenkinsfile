@@ -12,14 +12,14 @@ node{
     }
     stage("Push the Image in the ECR"){
         sh ("eval \$(aws ecr get-login --no-include-email --region us-east-1)")
-        sh "docker tag santu1120/container:v1 716975130174.dkr.ecr.us-east-1.amazonaws.com/santu:v1"
-        sh "docker push 716975130174.dkr.ecr.us-east-1.amazonaws.com/santu:v1"
+        sh "docker tag santu1120/container:v1 716975130174.dkr.ecr.us-east-1.amazonaws.com/santu:${env.BUILD_ID}"
+        sh "docker push 716975130174.dkr.ecr.us-east-1.amazonaws.com/santu:${env.BUILD_ID}"
         }
     stage("Push the docker image dockerhub")
     withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'DOCKER_HUB_PASSWORD')]) {
       sh "docker login -u santu1120 -p ${DOCKER_HUB_PASSWORD}"
 }
-      sh "docker push santu1120/container:v1 "
+      sh "docker push santu1120/container:${env.BUILD_ID}"
     stage("Container build in the AKS"){
         kubernetesDeploy(
             configs: 'apache2.yaml',
