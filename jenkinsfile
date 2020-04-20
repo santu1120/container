@@ -3,12 +3,12 @@ node{
         git credentialsId: 'GIT_PASSWORD', url: 'https://github.com/santu1120/container.git'
     }
     stage("Docker image build"){
-      sh "docker build -t santu1120/container:v1 ."
+      sh "docker build -t santu1120/container:${env.BUILD_ID} ."
     }
     stage("Push the image in the Microsoft Repository"){
         sh "docker login santu1234.azurecr.io --username santu1234 --password D=kTd2w80C13rHpKD0PcVlsA6OFNloSZ"
-        sh "docker tag santu1120/container:v1 santu1234.azurecr.io/container:v1"
-        sh "docker push santu1234.azurecr.io/container:v1"
+        sh "docker tag santu1120/container:${env.BUILD_ID} santu1234.azurecr.io/container:${env.BUILD_ID}"
+        sh "docker push santu1234.azurecr.io/container:${env.BUILD_ID}"
     }
     stage("Push the Image in the ECR"){
         sh ("eval \$(aws ecr get-login --no-include-email --region us-east-1)")
@@ -19,7 +19,7 @@ node{
     withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'DOCKER_HUB_PASSWORD')]) {
       sh "docker login -u santu1120 -p ${DOCKER_HUB_PASSWORD}"
 }
-      sh "docker push santu1120/container:${env.BUILD_ID} "
+      sh "docker push santu1120/container:${env.BUILD_ID}"
     stage("Container build in the AKS"){
         kubernetesDeploy(
             configs: 'apache2.yaml',
