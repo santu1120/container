@@ -5,7 +5,7 @@ apt-get -y install apache2 \
 mysql-client \
 mysql-server 
 # Install apache and write hello world message
-RUN echo 'Hello World!' > /var/www/html/index.html
+RUN echo 'Hello World! 66666666666666666666666666666666666666666666' > /var/www/html/index.html
 # Configure apache
 RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
  echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
